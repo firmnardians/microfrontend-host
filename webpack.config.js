@@ -4,10 +4,22 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const deps = require('./package.json').dependencies;
 
 module.exports = {
+	entry: './src/index',
 	mode: 'development',
+	output: {
+		filename: `host_project.js`,
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: 'http://localhost:8085',
+		asyncChunks: true,
+	},
+	devServer: {
+		port: 8085,
+		historyApiFallback: true,
+	},
 	resolve: {
 		extensions: ['.css', '.scss', '.js', '.jsx'],
 	},
+	target: 'web',
 	module: {
 		rules: [
 			{
@@ -47,9 +59,9 @@ module.exports = {
 		}),
 		new ModuleFederationPlugin({
 			name: 'HOST',
-			filename: 'remoteEntry.js',
-			exposes: {
-				'./app': './src/components/App',
+			remotes: {
+				TEAM_ONE: `TEAM_ONE@http://localhost:8086/moduleEntry.js`,
+				TEAM_TWO: `TEAM_TWO@http://localhost:8087/moduleEntry.js`,
 			},
 		}),
 	],

@@ -1,0 +1,13 @@
+.main-host {
+	padding: 20px;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	background-color: antiquewhite;
+	height: 100vw;
+}
+
+* {
+	padding: 0px;
+	margin: 0px;
+}

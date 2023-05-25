@@ -1,13 +1,17 @@
 import React from 'react';
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import MainApp from './components/Main';
+import Main from './Main';
+import { BrowserRouter } from 'react-router-dom';
 
-const rootElement = document.getElementById('container');
+import './assets/index.css';
+
+const rootElement = document.getElementById('ZEUS');
 const root = createRoot(rootElement);
 
 root.render(
-	<StrictMode>
-		<MainApp />
-	</StrictMode>
+	<React.StrictMode>
+		<BrowserRouter>
+			<Main />
+		</BrowserRouter>
+	</React.StrictMode>
 );
